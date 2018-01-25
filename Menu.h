@@ -28,7 +28,7 @@ public:
 	int getRow();	//passes row for Evan's class functions
 	int getColumn();	//passes column for Evan's class functions
 private:
-	fstream instructions;	//for opening instructions
+	ifstream instructions;	//for opening instructions
 	bool playing;	//used to track if the user is still wanting to play
 	int userMenuType; 	//stores whatever the user types in userMenu
 	int game;	//stores game choice
@@ -40,9 +40,9 @@ private:
 
 Menu::Menu()
 {
-this->selectGame();
-this->selectPuzzle();
-this->playing=true;
+	this->selectGame();
+	this->selectPuzzle();
+	this->playing = true;
 };
 Menu::~Menu()
 {
@@ -80,51 +80,55 @@ void Menu::selectPuzzle()
 	cout << "Now, please select a puzzle name: ";
 	cin >> puzzle;
 	cout << endl << "thanks! you will open " << puzzle << "!" << endl;
-	
+
 };
 void Menu::readString(string a)
 {
-	int i=0;
-	int j=0;
-	if(isdigit(a.c_str()[0]))
-		i=1;
-	else if(isalpha(a.c_str()[0]))
-		i=2;
-	switch(i)
+	string readIt;
+	int i = 0;
+	int j = 0;
+	if (isdigit(a.c_str()[0]))
+		i = 1;
+	else if (isalpha(a.c_str()[0]))
+		i = 2;
+	switch (i)
 	{
 	case 1:
 		//pass integers to row and column
-		for (int x=0; x<strlen(a.c_str()); x++)
-		if(a[x]==' ')
-		{
-			setRow(atoi((a.substr(0,x)).c_str()));
-			setColumn(atoi((a.substr(x+1,strlen(a.c_str())).c_str())));
-		}
+		for (unsigned int x = 0; x < strlen(a.c_str()); x++)
+			if (a[x] == ' ')
+			{
+				setRow(atoi((a.substr(0, x)).c_str()));
+				setColumn(atoi((a.substr(x + 1, strlen(a.c_str())).c_str())));
+			}
 		break;
 	case 2:
-		if(a=="help")
+		if (a == "help")
 		{
-			if(game == 1)
+			if (game == 1)
 				instructions.open("NonogramRules.txt");
-			else if(game == 2)
+			else if (game == 2)
 				instructions.open("RulloRules.txt");
-			while(instructions.good())
+			while (getline(instructions, readIt))
 			{
-				cout << instructions.getline << endl;
-			};
-			instructions.close;
+				cout << readIt << endl;
+			}
+			instructions.close();
 		}
-		else if(a == "menu")
+		else if (a == "menu")
 		{
 			userMenu();
 		}
-		else if(a == "exit")
+		else if (a == "exit")
 		{
-			playing=false;
+			playing = false;
 		}
 		break;
 	default:
-		//recurse into this function after asking for a re-entry of user choice
+		cout << "Sorry, I didn't catch that. Please try again." << endl;
+		cin >> readIt;
+		cout << endl;
+		readString(readIt);
 	}
 };
 void Menu::makeMove()
@@ -136,61 +140,64 @@ void Menu::userMenu()
 	cout << "Hello there. What would you like help with?" << endl;
 	cout << "If you would like instructions, type 1. If you would like to exit our game, type 9. Otherwise, type 5 to return to your game." << endl;
 	cin >> userMenuType;
-	
-	switch(userMenuType){
-		case '1' :
-			//print instructions for the current game type
-			if (game = 1)
-			{
-				cout << "These are Picross rules!" << endl;
-			}
-			else if (game = 2)
-			{
-				cout << "These are the rules of Rullo!" << endl;
-				cout << "In this game you have a board full of numbers, and your goal is to make the sum of every row and column equal to the number in the box next to it." << endl;
-				cout << "At the start of each game all of the numbers will be 'on', and you get to turn numbers on and off until the game is won." << endl;
-				cout << "To choose a square, tyle the X/Y co-ordinates (not the number in the grid." << endl;
-				
-				//this is assuming console input
-			}
-			break;
-		case '5' : 
-			break;
-		case '9' : 
-			cout << "Sorry to see you go, but have a nice day." << endl;
-			playing = false;
-			//find some way to force exit the program. a new function?
-			std::exit;
-			break;
-		default :
-			break; //yes, this is the same as case 5
+
+	switch (userMenuType) {
+	case '1':
+		//print instructions for the current game type
+		if (game = 1)
+		{
+			cout << "These are Picross rules!" << endl;
+		}
+		else if (game = 2)
+		{
+			cout << "These are the rules of Rullo!" << endl;
+			cout << "In this game you have a board full of numbers, and your goal is to make the sum of every row and column equal to the number in the box next to it." << endl;
+			cout << "At the start of each game all of the numbers will be 'on', and you get to turn numbers on and off until the game is won." << endl;
+			cout << "To choose a square, tyle the X/Y co-ordinates (not the number in the grid." << endl;
+
+			//this is assuming console input
+		}
+		break;
+	case '5':
+		break;
+	case '9':
+		cout << "Sorry to see you go, but have a nice day." << endl;
+		playing = false;
+		//find some way to force exit the program. a new function?
+		//-----------------------------------------------------------------------------
+		//std::exit;
+		//----------------------------------------------------------------------------
+		break;
+	default:
+		break; //yes, this is the same as case 5
 	}
 };
 void Menu::setRow(int a)
 {
-	passRow=a;
+	passRow = a;
 };
 void Menu::setColumn(int a)
 {
-	passColumn=a;
+	passColumn = a;
 };
 
 bool Menu::isWin()
 {
-
+	// needs to be properly coded
+	return 0;
 };
 bool Menu::isPlaying()
 {
-	
+	return playing;
 };
 
 int Menu::getRow()
 {
-	return passRow;	
+	return passRow;
 };
 int Menu::getColumn()
 {
-	return passColumn;	
+	return passColumn;
 };
 
 #endif

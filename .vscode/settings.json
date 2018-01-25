@@ -2,6 +2,7 @@
     "files.associations": {
         "xstring": "cpp",
         "xlocale": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iostream": "cpp"
     }
 }
