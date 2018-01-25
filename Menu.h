@@ -27,7 +27,6 @@ public:
 	bool isPlaying(); //checks if the user still wants to play
 	int getRow();	//passes row for Evan's class functions
 	int getColumn();	//passes column for Evan's class functions
-	string readIt;		//used for string function actions
 private:
 	ifstream instructions;	//for opening instructions
 	bool playing;	//used to track if the user is still wanting to play
@@ -37,13 +36,14 @@ private:
 	int passRow;	//used to pass the row to Evan's classes
 	int passColumn;	//used to pass the column to Evan's classes
 	string puzzle;	//stores puzzle name
+	string readIt;		//used for string function actions
 };
 
 Menu::Menu()
 {
-	this->selectGame();
-	this->selectPuzzle();
-	this->playing = true;
+	selectGame();
+	selectPuzzle();
+	playing = true;
 };
 Menu::~Menu()
 {
@@ -52,33 +52,27 @@ Menu::~Menu()
 
 void Menu::selectGame()
 {
-	//int a;
 	cout << "Please pick a number between 1 and 2:" << endl << "1=picross   2=rullo" << endl << "Or type 9 to exit." << endl;
-
-	//cin >> a;
 	cin >> choice;
 	cout << endl;
-	//switch (a)
 	switch (choice)
 	{
-	case '1':
+	case 1:
 		cout << "Cool! You picked Picross!" << endl;
 		break;
-	case '2':
+	case 2:
 		cout << "Neat! Rullo Rules!" << endl;
 		break;
-	case '9':
+	case 9:
 		cout << "Sorry to see you go, but have a nice day." << endl;
 		playing = false;
 		break;
 	default://change this to either recurse or exit
 		cout << "You miscreant! It's Nonograms for you!" << endl;
-		//a = 1;
 		choice = 1;
 		break;
 	}
 	game = choice;
-	//game = a;
 };
 void Menu::selectPuzzle()
 {
@@ -147,7 +141,7 @@ void Menu::userMenu()
 	cin >> userMenuType;
 
 	switch (userMenuType) {
-	case '1':
+	case 1:
 		//print instructions for the current game type
 		if (game = 1)
 		{
@@ -163,13 +157,13 @@ void Menu::userMenu()
 			//this is assuming console input
 		}
 		break;
-	case '5':
+	case 5:
 		cout << "Okay! let's try that again!" << endl;
 		cin >> readIt;
 		cout << endl;
 		readString(readIt);
 		break;
-	case '9':
+	case 9:
 		cout << "Sorry to see you go, but have a nice day." << endl;
 		playing = false;
 		//find some way to force exit the program. a new function?
