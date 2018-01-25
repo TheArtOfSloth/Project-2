@@ -49,3 +49,13 @@ Slight communication issues, but solved with civility and efficiency... This gro
 
 PROJECT 2:
 
+17-Jan-2018:
+We were assigned the second project. It consisted of expanding upon the first one, which we didn't finish in time.
+Tasks assigned as follows:
+Me: Menu header and user interaction loops.
+Tarin: assist me and work on writing large text blocks (instructions, options, etc).
+John: Code a console UI, then write a cleaner GUI if time allows.
+Navi: Assist John with Console UI, then run unit tests and debugging.
+Evan: (re)write header files for data storage and generation.
+
+19-Jan-2018:
