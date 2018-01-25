@@ -27,6 +27,7 @@ public:
 	bool isPlaying(); //checks if the user still wants to play
 	int getRow();	//passes row for Evan's class functions
 	int getColumn();	//passes column for Evan's class functions
+	string readIt;		//used for string function actions
 private:
 	ifstream instructions;	//for opening instructions
 	bool playing;	//used to track if the user is still wanting to play
@@ -51,12 +52,14 @@ Menu::~Menu()
 
 void Menu::selectGame()
 {
-	int a;
+	//int a;
 	cout << "Please pick a number between 1 and 2:" << endl << "1=picross   2=rullo" << endl << "Or type 9 to exit." << endl;
 
-	cin >> a;
+	//cin >> a;
+	cin >> choice;
 	cout << endl;
-	switch (a)
+	//switch (a)
+	switch (choice)
 	{
 	case '1':
 		cout << "Cool! You picked Picross!" << endl;
@@ -70,10 +73,12 @@ void Menu::selectGame()
 		break;
 	default://change this to either recurse or exit
 		cout << "You miscreant! It's Nonograms for you!" << endl;
-		a = 1;
+		//a = 1;
+		choice = 1;
 		break;
 	}
-	game = a;
+	game = choice;
+	//game = a;
 };
 void Menu::selectPuzzle()
 {
@@ -84,7 +89,7 @@ void Menu::selectPuzzle()
 };
 void Menu::readString(string a)
 {
-	string readIt;
+	
 	int i = 0;
 	int j = 0;
 	if (isdigit(a.c_str()[0]))
@@ -159,6 +164,10 @@ void Menu::userMenu()
 		}
 		break;
 	case '5':
+		cout << "Okay! let's try that again!" << endl;
+		cin >> readIt;
+		cout << endl;
+		readString(readIt);
 		break;
 	case '9':
 		cout << "Sorry to see you go, but have a nice day." << endl;
