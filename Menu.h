@@ -20,7 +20,7 @@ public:
 	void selectPuzzle();	//selects a specific puzzle
 	void makeMove();	//makes a move
 	void userMenu();	//the user invokes this if they want to open a help menu, or exit the program during a puzzle
-	void readString(string a);	//reads a string and acts accordingly
+	void readString(string);	//reads a string and acts accordingly
 	void setRow(int a);	//sets the passRow variable
 	void setColumn(int a);	//sets the passColumn variable
 	bool isWin(); //checks if the game is won
