@@ -4,12 +4,20 @@ while (isPlaying()){
   switch (gameStatus){
     case 0:                         //game just started, print intro
       cout << "Welcome!" << endl;
-      gameStatus = 1;
     case 1:                         //ask user what game they wish to play
     
     case 2:                         //game is playing
       printPuzzle();
+    case 3:                         //user asked for help
+      if (rullo) print Rullo Instructions
+      else if (nonograms) print Nonogram instructions
   }
+  
+  cin >> input;
+  
+  //parse user's input
+  
+  if (gameStatus = 0) gameStatus = 1;
 }
 
 /*
