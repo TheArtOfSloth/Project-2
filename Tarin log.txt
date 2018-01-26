@@ -21,3 +21,8 @@ Wednesday
 Wrote some pseudocode for the main menu. I want to get this thing done but for that I need to storyboard it to check for user functionality before code functionality
 11:30 PM
 Wrote a little more refined pseudocode
+
+Friday
+12 noon
+I forgot to log this in last night; I was picking at my pseydocode. It turns out that the menu stuff we already wrote works perfectly so while the notes were good practice it's being scrapped.
+Today we are making some default puzzle files for testing. I've already made a 5x5 one, let's move on to some bigger stuff to test our scaling
