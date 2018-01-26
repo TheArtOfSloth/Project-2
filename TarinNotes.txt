@@ -13,11 +13,11 @@ while (isPlaying()){
       else if (nonograms) print Nonogram instructions
   }
   
-  cin >> input;
-  
-  //parse user's input
-  
-  if (gameStatus = 0) gameStatus = 1;
+  if (gameStatus = 0) gameStatus = 1;   //user gives no input after the welcome message, go to the next loop to select game
+  else {
+    cin >> inputString;
+    //parse user's input
+  }
 }
 
 /*
