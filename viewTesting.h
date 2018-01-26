@@ -14,21 +14,22 @@
 class View {
 	int width;
 	int height;
-	int grid[10][10];
+	int grid[12][12];
 	int answersLeft = 5; //From my sample test case file. Fit to other puzzles later.
 	std::vector<std::pair<int, int>> answers;
-	enum gameState { PLAY, END, QUIT };
+	//enum gameState { PLAY, END, QUIT };
 public:
 	View();
 	void userAnswer(char letter, int row);
+	void updateAnswerGrid(int col, int row, int& grid);
 	bool getPuzzle(const std::string file);
 	bool checkAnswer(std::pair<int, int> &answers);
 	void fillAnswers(std::pair<int, int> &answer);
 	void draw();
 	void init(); //Maybe just put this in constructor.
-	bool continuePlaying(gameState &state); //For polling loop of the game match.
-	gameState setGameState = PLAY;
-	gameState endGame(std::string response);
+	//bool continuePlaying(gameState &state); //For polling loop of the game match.
+	//gameState setGameState = PLAY;
+	//gameState endGame(std::string response);
 
 };
 
@@ -40,13 +41,13 @@ void View::init() {
 	}
 }
 
-gameState View::endGame(std::string response) {
+/*gameState View::endGame(std::string response) {
 	
 }
 
 bool View::continuePlaying(gameState &state) {
 	return state;
-}
+}*/
 
 //Check the value the user input matches one of the answers in our puzzle.
 bool View::checkAnswer(std::pair<int, int> &userAnswer) {
@@ -65,8 +66,8 @@ bool View::checkAnswer(std::pair<int, int> &userAnswer) {
 }
 
 View::View() {
-	width = 10; //Default to 10 for width and height
-	height = 10;
+	width = 12; //Default to 10 for width and height
+	height = 12;
 	init();
 }
 
@@ -76,10 +77,18 @@ void View::userAnswer(char letter, int row) {
 	//Translate letter to int value for puzzle
 	int col = toupper(letter) - 65;
 	std::pair<int, int> choice;
-	choice.first = col;
-	choice.second = row;
+	choice.first = row;
+	choice.second = col;
 
-	checkAnswer(choice);
+	if (checkAnswer(choice))
+		updateAnswerGrid(col, row, grid[row][col]);
+
+}
+
+void View::updateAnswerGrid(int col, int row, int& grid) {
+	grid = 1;
+
+	std::cout << grid << std::endl;
 
 }
 
@@ -133,8 +142,6 @@ bool View::getPuzzle(const std::string file) {
 		answer.second = j;
 		fillAnswers(answer);
 	}
-
-
 
 	solutionFile.close();
 	return true;

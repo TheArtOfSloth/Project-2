@@ -7,12 +7,19 @@ int main() {
 
 	char col;
 	int row;
-	int answersLeft;
-	//std::cin >> col >> row;
-	while (View::play()) {
+	
+	//Dummy loop for testing purposes
+	int i = 0;
+	while (i < 10) {
 		test.draw();
+
 		std::cin >> col >> row;
+		test.userAnswer(col, row);
+		i++;
 	}
+
+
+	test.draw();
 
 	system("pause");
 	return 0;
