@@ -16,6 +16,7 @@ class Menu	//menu class for user traversal
 public:
 	Menu();	//standard constructor
 	~Menu();	//standard destructor
+	void setUpPlay();	//to keep selection functions outside of constructor
 	void selectGame();	//sets which game is being played
 	void selectPuzzle();	//selects a specific puzzle
 	void makeMove();	//makes a move
@@ -41,8 +42,6 @@ private:
 
 Menu::Menu()
 {
-	selectGame();
-	selectPuzzle();
 	playing = true;
 };
 Menu::~Menu()
@@ -50,6 +49,11 @@ Menu::~Menu()
 
 };
 
+void Menu::setUpPlay()
+{
+	selectGame();
+	selectPuzzle();
+};
 void Menu::selectGame()
 {
 	cout << "Please pick a number between 1 and 2:" << endl << "1=picross   2=rullo" << endl << "Or type 9 to exit." << endl;
