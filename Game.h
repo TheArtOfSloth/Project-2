@@ -27,7 +27,7 @@ class Game
 {
 public:
 	Game();                                                 // Default constructor: initializes all values to 0 or null
-	Game(string) {};                                        // Constructor to load game from file (does nothing in base class)
+	Game(string);											// Constructor to load game from file
 	Game(Space**, int, int);                                // Constructor to load custom game (only initializes solution, row, and column)
 	virtual int getNumRows() const = 0;                     // Getter for the number of rows in puzzle
 	virtual int getNumCols() const = 0;                     // Getter for the number of columns in puzzle
@@ -35,16 +35,16 @@ public:
 	virtual int getColKeyHeight() const = 0;                // Getter for the number of tows in the column key (calculated on call)
 	virtual int getRowKey(int, int) const = 0;              // Return int from the row key (-1 if out of bounds)
 	virtual int getColKey(int, int) const = 0;              // Return int from the column key (-1 if out of bounds)
-	virtual Space * getSolution(int, int) const = 0;	// Return Space object from solution (null if out of bounds)
+	virtual Space * getSolution(int, int) const = 0;		// Return Space object from solution (null if out of bounds)
 	virtual Space * getBoard(int, int) const = 0;           // Return Space object from board (null if out of bounds)
 	virtual bool isWin() const = 0;                         // Boolean function to hold winning conditions (put in while-loop)
 	virtual void move(int, int, int) = 0;                   // Modifies the appropriate value when a certain space is invoked
-	virtual void createGame(Space**, int, int) = 0;		// Overwrites current game with game of same type (resets board)
+	virtual void createGame(Space**, int, int) = 0;			// Overwrites current game with game of same type (resets board)
 	virtual void loadGame(string) = 0;                      // Load game from a .txt file (returns blank game if file DNE)
-	virtual void saveGame(string) = 0;			// Save game to a .txt file
+	virtual void saveGame(string) = 0;						// Save game to a .txt file
 	virtual ~Game() = 0;                                    // Destructor
 protected:
-	int numRows, numCols, **rowKey, **colKey;
+	int numRows, numCols, colKeyHeight, **rowKey, **colKey;
 	Space **solution, **board;
 	virtual void generateKeys() = 0;
 };
@@ -105,6 +105,10 @@ Game::Game(Space **sol, int row, int col) : numRows(row), numCols(col), solution
 int Game::getNumRows() const { return numRows; }
 
 int Game::getNumCols() const { return numCols; }
+
+int Game::getRowKeyWidth() const { return 0; }
+
+int Game::getColKeyHeight() const { return 0; }
 
 int Game::getRowKey(int row, int col) const { return (row >= getNumRows() || row < 0 || col >= getRowKeyWidth() || col < 0) ? -1 : rowKey[row][col]; }
 
@@ -199,7 +203,7 @@ void Game::saveGame(string filename)
 	file << getNumRows() << " " << getNumCols() << endl;
 	for (int i = 0; i < getNumRows(); i++)
 	{
-		for (int j = 0; j < getNumCols(); j ++)
+		for (int j = 0; j < getNumCols(); j++)
 		{
 			if (solution[i][j].boolean) file << i << " " << j << endl; else;
 		}
@@ -219,3 +223,4 @@ Game::~Game()
 }
 
 #endif
+

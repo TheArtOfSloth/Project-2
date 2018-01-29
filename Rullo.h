@@ -1,5 +1,5 @@
-#ifndef PICROSS_H
-#define PICROSS_H 1
+#ifndef RULLO_H
+#define RULLO_H 1
 
 #include<fstream>
 #include<iostream>
