@@ -26,3 +26,8 @@ Friday
 12 noon
 I forgot to log this in last night; I was picking at my pseydocode. It turns out that the menu stuff we already wrote works perfectly so while the notes were good practice it's being scrapped.
 Today we are making some default puzzle files for testing. I've already made a 5x5 one, let's move on to some bigger stuff to test our scaling
+6 pm
+I realized I completely screwed up one of the puzzles and rebuilt it
+
+Monday
+According to the emails before class and hte team meeting during class we're... done? Hopefully? Every other team member is announcing they've finished up, and it doesn't seem like I have any jobs to help them on. I guess we're submitting like this
