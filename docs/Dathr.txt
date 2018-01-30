@@ -59,3 +59,17 @@ Navi: Assist John with Console UI, then run unit tests and debugging.
 Evan: (re)write header files for data storage and generation.
 
 19-Jan-2018:
+More work on the Menu file, and some time meeting with group.
+
+22-Jan-2018:
+Menu file ready. All non-reliant functions coded. Not yet checked for errors.
+
+24-Jan-2018
+Navi found some bugs. I fixed them all up, and found they were all syntax errors.
+Successfully tested all standalone functions without errors. Main function completed
+
+26-Jan-2018:
+Made some more puzzle files. John and Evan working on linking up the remaining code.
+
+29-Jan-2018:
+Code finished. Group appreciated.
