@@ -27,7 +27,7 @@ class Game
 {
 public:
 	Game();                                                 // Default constructor: initializes all values to 0 or null
-	Game(string);											// Constructor to load game from file
+	Game(string);						// Constructor to load game from file
 	Game(Space**, int, int);                                // Constructor to load custom game (only initializes solution, row, and column)
 	virtual int getNumRows() const = 0;                     // Getter for the number of rows in puzzle
 	virtual int getNumCols() const = 0;                     // Getter for the number of columns in puzzle
@@ -35,13 +35,13 @@ public:
 	virtual int getColKeyHeight() const = 0;                // Getter for the number of tows in the column key (calculated on call)
 	virtual int getRowKey(int, int) const = 0;              // Return int from the row key (-1 if out of bounds)
 	virtual int getColKey(int, int) const = 0;              // Return int from the column key (-1 if out of bounds)
-	virtual Space * getSolution(int, int) const = 0;		// Return Space object from solution (null if out of bounds)
+	virtual Space * getSolution(int, int) const = 0;	// Return Space object from solution (null if out of bounds)
 	virtual Space * getBoard(int, int) const = 0;           // Return Space object from board (null if out of bounds)
 	virtual bool isWin() const = 0;                         // Boolean function to hold winning conditions (put in while-loop)
 	virtual void move(int, int, int) = 0;                   // Modifies the appropriate value when a certain space is invoked
-	virtual void createGame(Space**, int, int) = 0;			// Overwrites current game with game of same type (resets board)
+	virtual void createGame(Space**, int, int) = 0;		// Overwrites current game with game of same type (resets board)
 	virtual void loadGame(string) = 0;                      // Load game from a .txt file (returns blank game if file DNE)
-	virtual void saveGame(string) = 0;						// Save game to a .txt file
+	virtual void saveGame(string) = 0;			// Save game to a .txt file
 	virtual ~Game() = 0;                                    // Destructor
 protected:
 	int numRows, numCols, colKeyHeight, **rowKey, **colKey;
@@ -63,13 +63,13 @@ Game::Game(string filename)
 	{
 		file >> numRows;
 		file >> numCols;
-		board = new Space*[getNumRows()];
-		solution = new Space*[getNumRows()];
-		for (int row = 0; row < getNumRows(); row++)
+		board = new Space*[numRows];
+		solution = new Space*[numRows];
+		for (int row = 0; row < numRows; row++)
 		{
-			board[row] = new Space[getNumCols()];
-			solution[row] = new Space[getNumCols()];
-			for (int col = 0; col < getNumCols(); col++)
+			board[row] = new Space[numCols];
+			solution[row] = new Space[numCols];
+			for (int col = 0; col < numCols; col++)
 			{
 				board[row][col].integer = (rand() % 10) + 1;
 				board[row][col].boolean = false;
@@ -90,11 +90,11 @@ Game::Game(string filename)
 
 Game::Game(Space **sol, int row, int col) : numRows(row), numCols(col), solution(sol)
 {
-	board = new Space*[getNumRows()];
-	for (int i = 0; i < getNumRows(); i++)
+	board = new Space*[numRows];
+	for (int i = 0; i < numRows; i++)
 	{
-		board[i] = new Space[getNumCols()];
-		for (int j = 0; j < getNumCols(); j++)
+		board[i] = new Space[numCols];
+		for (int j = 0; j < numCols; j++)
 		{
 			board[i][j].integer = solution[i][j].integer;
 			board[i][j].boolean = false;
@@ -108,7 +108,7 @@ int Game::getNumCols() const { return numCols; }
 
 int Game::getRowKeyWidth() const { return 0; }
 
-int Game::getColKeyHeight() const { return 0; }
+int Game::getColKeyHeight() const { return colKeyHeight; }
 
 int Game::getRowKey(int row, int col) const { return (row >= getNumRows() || row < 0 || col >= getRowKeyWidth() || col < 0) ? -1 : rowKey[row][col]; }
 
@@ -144,7 +144,7 @@ void Game::createGame(Space **sol, int row, int col)
 		delete[] solution[i];
 		delete[] board[i];
 	}
-	for (int i = 0; i < getColKeyHeight(); i++) delete[] colKey[i];
+	for (int i = 0; i < this->getColKeyHeight(); i++) delete[] colKey[i];
 	solution = sol, numRows = row, numCols = col;
 	board = new Space*[getNumRows()];
 	for (int i = 0; i < getNumRows(); i++)
@@ -219,8 +219,7 @@ Game::~Game()
 		delete[] solution[i];
 		delete[] board[i];
 	}
-	for (int i = 0; i < getColKeyHeight(); i++) delete[] colKey[i];
+	for (int i = 0; i < colKeyHeight; i++) delete[] colKey[i];
 }
 
 #endif
-
