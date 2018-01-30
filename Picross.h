@@ -37,23 +37,27 @@ private:
 
 Picross::Picross(string filename) : Game(filename)
 {
+	colKeyHeight = getColKeyHeight();
 	generateKeys();
 }
 
 Picross::Picross(Space **sol, int row, int col) : Game(sol, row, col)
 {
+	colKeyHeight = getColKeyHeight();
 	generateKeys();
 }
 
 void Picross::createGame(Space** sol, int row, int col)
 {
 	Game::createGame(sol, row, col);
+	colKeyHeight = getColKeyHeight();
 	generateKeys();
 }
 
 void Picross::loadGame(string filename)
 {
 	Game::loadGame(filename);
+	colKeyHeight = getColKeyHeight();
 	generateKeys();
 }
 
@@ -94,4 +98,3 @@ void Picross::generateKeys()
 }
 
 #endif
-
