@@ -38,24 +38,28 @@ private:
 
 Rullo::Rullo(string filename) : Game(filename)
 {
+	colKeyHeight = getColKeyHeight();
 	randomize();
 	generateKeys();
 }
 
 Rullo::Rullo(Space **sol, int row, int col) : Game(sol, row, col)
 {
+	colKeyHeight = getColKeyHeight();
 	generateKeys();
 }
 
 void Rullo::createGame(Space **sol, int row, int col)
 {
 	Game::createGame(sol, row, col);
+	colKeyHeight = getColKeyHeight();
 	generateKeys();
 }
 
 void Rullo::loadGame(string filename)
 {
 	Game::loadGame(filename);
+	colKeyHeight = getColKeyHeight();
 	randomize();
 	generateKeys();
 }
@@ -73,7 +77,7 @@ void Rullo::generateKeys()
 		}
 	}
 	colKey = new int*[getColKeyHeight()];
-	colKey[0] = new int[getNumRows()];
+	colKey[0] = new int[getNumCols()];
 	for (int i = 0; i < getNumCols(); i++)
 	{
 		colKey[0][i] = 0;
