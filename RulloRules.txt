@@ -1,4 +1,4 @@
 Welcome! The instructions of Rullo are simple to learn, but can be quite the challenge to master.
 You will be presented with a grid of numbers. Inside the play field are a set of numbers you can click on to turn "on" and "off".
 Around the top and sides of the grid are lists of sums. A sum along the top, for example, is the "target" sum for the vertical column it touches. The same goes for the horizontal rows and the adjacent sum.
-Your goal, is to turn the numbers in the grid such that all the numbers turned "on" in a column will add up to the target sum. At the same time you need to ensure the numbers turned "on" in a given row add up to that target sum. Once every sum, along the columns and along hte rows, has been met, you win the game!
+Your goal, is to turn the numbers in the grid such that all the numbers turned "on" in a column will add up to the target sum. At the same time you need to ensure the numbers turned "on" in a given row add up to that target sum. Once every sum, along the columns and along the rows, has been met, you win the game!
